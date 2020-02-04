@@ -13,6 +13,10 @@ class ChainList:
   def _from(array_like):
     return ChainList(list(array_like))
 
+  @staticmethod
+  def _is_chain_list(obj):
+    return type(obj) == ChainList
+
   def map(self, callback):
     return ChainList([
       callback(item)
