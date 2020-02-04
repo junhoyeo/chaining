@@ -10,7 +10,7 @@ print(array)
 print(array.length) # property length
 # 3
 
-other_array = ChainList.from('chain') # static method from
+other_array = ChainList._from('chain') # static method from
 print(other_array)
 # <ChainList ['c', 'h', 'a', 'i', 'n']>
 print(other_array.length)
