@@ -1,11 +1,15 @@
 from distutils.core import setup
 
+with open("README.md", "r") as fh:
+  long_description = fh.read()
+
 setup(
   name = 'chaining',
   packages = ['chaining'],
   version = '0.0.1',
   license='MIT',
   description = 'Package that implements functional chaining in Python, which behaves like JavaScript',
+  long_description=long_description,
   author = 'Junho Yeo',
   author_email = 'hanaro0704@gmail.com',
   url = 'https://github.com/junhoyeo/chaining',
