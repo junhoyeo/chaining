@@ -14,6 +14,10 @@ def test_static_methods():
   array = ChainList._from(base_string)
   assert array.iterable == list(base_string)
 
+  for wrong_obj in [[], '', 1]:
+    assert ChainList._is_chain_list(wrong_obj) == False
+  assert ChainList._is_chain_list(array) == True
+
 def test_instance_methods():
   first_array_original = [1, 2, 3]
   first_array = ChainList(first_array_original)
