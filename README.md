@@ -1,5 +1,5 @@
 # ⛓ Pychaining
-> Functional chaining in Python
+> Package that implements functional chaining in Python, which behaves like JavaScript
 
 ```python
 from chaining import ChainList
