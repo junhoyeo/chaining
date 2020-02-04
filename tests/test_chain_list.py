@@ -36,8 +36,8 @@ class TestInstanceMethods:
 
   def test_copy_within(self):
     array = ChainList(['a', 'b', 'c', 'd', 'e'])
-    assert array.copyWithin(0, 3, 4).iterable == ['d', 'b', 'c', 'd', 'e']
-    assert array.copyWithin(1, 3).iterable == ['d', 'd', 'e', 'd', 'e']
+    assert array.copy_within(0, 3, 4).iterable == ['d', 'b', 'c', 'd', 'e']
+    assert array.copy_within(1, 3).iterable == ['d', 'd', 'e', 'd', 'e']
 
   def test_entries(self):
     iterator = self.first_array.entries()
@@ -58,7 +58,7 @@ class TestInstanceMethods:
     assert array.fill(6).iterable == [6, 6, 6, 6]
 
   def test_filter(self):
-    is_long = lambda word: word.length > 6
+    is_long = lambda word: len(word) > 6
     words = ChainList(['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'])
 
     filtered_words = words.filter(is_long)
