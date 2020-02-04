@@ -6,6 +6,20 @@ def callback_wrapper(callback, item, index, array, param_length):
   else:
     return callback(item, index, array)
 
+def _flatten(array, depth):
+  result = []
+  for item in array:
+    item_type = type(item)
+    if item_type in [tuple, list]:
+      if depth:
+        for element in _flatten(item, depth - 1):
+          result.append(element)
+      else:
+        result.append(item)
+    else:
+      result.append(item)
+  return result
+
 class ChainList:
   iterable = []
   length = 0
@@ -75,6 +89,26 @@ class ChainList:
     param_length = callback.__code__.co_argcount
     for idx, item in enumerate(self.iterable):
       callback_wrapper(callback, item, idx, self.iterable, param_length)
+
+  def find(self, callback):
+    param_length = callback.__code__.co_argcount
+    for idx, item in enumerate(self.iterable):
+      if callback_wrapper(callback, item, idx, self.iterable, param_length):
+        return item
+
+  def find_index(self, callback):
+    param_length = callback.__code__.co_argcount
+    for idx, item in enumerate(self.iterable):
+      if callback_wrapper(callback, item, idx, self.iterable, param_length):
+        return idx
+
+  def flat(self, depth=1):
+    array = self.iterable.copy()
+    return ChainList(_flatten(array, depth))
+
+  def flat_map(self, callback):
+    array = self.map(callback)
+    return ChainList(_flatten(array.iterable, 1))
 
   def map(self, callback):
     param_length = callback.__code__.co_argcount
