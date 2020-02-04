@@ -1,4 +1,4 @@
-# ⛓ Pychaining
+# ⛓ Chaining
 > Package that implements functional chaining in Python, which behaves like JavaScript
 
 ```python
