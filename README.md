@@ -2,15 +2,15 @@
 > Functional chaining in Python
 
 ```python
-from chaining import chain_list
+from chaining import ChainList
 
-array = chain_list([1, 2, 3])
+array = ChainList([1, 2, 3])
 print(array)
 # <ChainList [1, 2, 3]>
 print(array.length) # property length
 # 3
 
-other_array = chain_list.from('chain') # static method from
+other_array = ChainList.from('chain') # static method from
 print(other_array)
 # <ChainList ['c', 'h', 'a', 'i', 'n']>
 print(other_array.length)
