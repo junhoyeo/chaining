@@ -20,7 +20,7 @@ def _flatten(array, depth):
       result.append(item)
   return result
 
-class ChainList:
+class ChainedArray:
   iterable = []
   length = 0
 
@@ -29,20 +29,20 @@ class ChainList:
     self.length = len(array)
 
   def __repr__(self):
-    return f'<ChainList {str(self.iterable)}>'
+    return f'<ChainedArray {str(self.iterable)}>'
 
   @staticmethod
   def _from(array_like):
-    return ChainList(list(array_like))
+    return ChainedArray(list(array_like))
 
   @staticmethod
   def _is_chain_list(obj):
-    return type(obj) == ChainList
+    return type(obj) == ChainedArray
 
   def concat(self, array_like):
-    is_chain_list = type(array_like) == ChainList
+    is_chain_list = type(array_like) == ChainedArray
     array = array_like.iterable if is_chain_list else list(array_like)
-    return ChainList(self.iterable + array)
+    return ChainedArray(self.iterable + array)
 
   def copy_within(self, target, start=0, end=None):
     if end == None:
@@ -75,11 +75,11 @@ class ChainList:
     array = self.iterable.copy()
     for idx in range(start, end):
       array[idx] = value
-    return ChainList(array)
+    return ChainedArray(array)
 
   def filter(self, callback):
     param_length = callback.__code__.co_argcount
-    return ChainList([
+    return ChainedArray([
       item
       for idx, item in enumerate(self.iterable)
       if callback_wrapper(callback, item, idx, self.iterable, param_length)
@@ -104,15 +104,15 @@ class ChainList:
 
   def flat(self, depth=1):
     array = self.iterable.copy()
-    return ChainList(_flatten(array, depth))
+    return ChainedArray(_flatten(array, depth))
 
   def flat_map(self, callback):
     array = self.map(callback)
-    return ChainList(_flatten(array.iterable, 1))
+    return ChainedArray(_flatten(array.iterable, 1))
 
   def map(self, callback):
     param_length = callback.__code__.co_argcount
-    return ChainList([
+    return ChainedArray([
       callback_wrapper(callback, item, idx, self.iterable, param_length)
       for idx, item in enumerate(self.iterable)
     ])

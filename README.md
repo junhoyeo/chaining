@@ -17,17 +17,17 @@ pip3 install chaining
 
 ## 🔥 Action
 
-### ChainList
+### ChainedArray
 ```python
->>> from chaining import ChainList
->>> array = ChainList([1, 2, 3])
+>>> from chaining import ChainedArray
+>>> array = ChainedArray([1, 2, 3])
 >>> array.length
 3
 >>> array.map(lambda item: item * 2)
-<ChainList [2, 4, 6]>
->>> other_array = ChainList._from('chain').map(lambda item, idx: ord(item) + idx)
+<ChainedArray [2, 4, 6]>
+>>> other_array = ChainedArray._from('chain').map(lambda item, idx: ord(item) + idx)
 >>> other_array.iterable
 [99, 105, 99, 108, 114]
 >>> array.concat(other_array)
-<ChainList [1, 2, 3, 99, 105, 99, 108, 114]>
+<ChainedArray [1, 2, 3, 99, 105, 99, 108, 114]>
 ```

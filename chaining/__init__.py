@@ -1,1 +1,1 @@
-from .chain_list import ChainList
+from .chained_array import ChainedArray
