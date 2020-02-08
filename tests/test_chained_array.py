@@ -97,8 +97,29 @@ class TestInstanceMethods:
     self.first_array.for_each(lambda item: result.append(item))
     assert result == self.first_array.iterable
 
+  def test_includes(self):
+    pass
+
+  def test_index_of(self):
+    pass
+
+  def test_join(self):
+    pass
+
+  def test_keys(self):
+    pass
+
+  def test_last_index_of(self):
+    pass
+
   def test_map(self):
     multiply = lambda item: item * 2
     mapped_array = self.first_array.map(multiply)
     assert mapped_array.iterable == [multiply(item) for item in self.first_array_original]
     assert mapped_array.iterable == [2, 4, 6]
+
+  def test_pop(self):
+    pass
+
+  def test_push(self):
+    pass

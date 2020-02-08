@@ -85,11 +85,6 @@ class ChainedArray:
       if callback_wrapper(callback, item, idx, self.iterable, param_length)
     ])
 
-  def for_each(self, callback):
-    param_length = callback.__code__.co_argcount
-    for idx, item in enumerate(self.iterable):
-      callback_wrapper(callback, item, idx, self.iterable, param_length)
-
   def find(self, callback):
     param_length = callback.__code__.co_argcount
     for idx, item in enumerate(self.iterable):
@@ -109,6 +104,26 @@ class ChainedArray:
   def flat_map(self, callback):
     array = self.map(callback)
     return ChainedArray(_flatten(array.iterable, 1))
+
+  def for_each(self, callback):
+    param_length = callback.__code__.co_argcount
+    for idx, item in enumerate(self.iterable):
+      callback_wrapper(callback, item, idx, self.iterable, param_length)
+
+  def includes(self, value, from_index=0):
+    return value in self.iterable[from_index:]
+
+  def index_of(self, value, from_index=0):
+    return self.iterable[from_index].index(value)
+
+  def join(self, separator=','):
+    return separator.join(self.iterable)
+
+  def keys(self):
+    return iter(range(self.length))
+
+  def last_index_of(self):
+    pass
 
   def map(self, callback):
     param_length = callback.__code__.co_argcount
