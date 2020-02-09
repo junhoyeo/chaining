@@ -122,8 +122,12 @@ class ChainedArray:
   def keys(self):
     return iter(range(self.length))
 
-  def last_index_of(self):
-    pass
+  def last_index_of(self, value, from_index=None):
+    if from_index == None:
+      from_index = self.length - 1
+    for idx, element in range(from_index, 0, -1):
+      if value == element:
+        return idx
 
   def map(self, callback):
     param_length = callback.__code__.co_argcount
